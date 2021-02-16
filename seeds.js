@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Warehouse = require("./models/Warehouse.model");
 
 mongoose
-    .connect("mongodb://localhost/Test", {
+    .connect("mongodb://localhost/Dycle", {
         userNewUrlParser: true
     })
     .then(x => console.log(`Connected to Mongo! Database name: $(x.connections[0].name)`))
