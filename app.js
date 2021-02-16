@@ -51,7 +51,7 @@ app.use("/", auth);
 require("./error-handling")(app);
 
 app.listen(3000, () => {
-    console.log("App listening at port:3000");
+    console.log("App listening at port: whatever");
 });
 
 module.exports = app;
