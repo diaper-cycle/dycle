@@ -50,8 +50,8 @@ app.use("/", auth);
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
-app.listen(3000, () => {
-    console.log("App listening at port: whatever");
+app.listen(5000, () => {
+    console.log("App listening at port: 5000");
 });
 
 module.exports = app;
