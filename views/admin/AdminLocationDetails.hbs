@@ -1,0 +1,11 @@
+<h2>Location Details</h2>
+ <hr>
+
+{{#with locationsList}}
+  <p>Name:  <b>{{this.name}}</b></p>
+  <p>Address:  <b>{{this.adress}}</b></p>
+  <p>Items available:  <b>{{this.items}}</b></p>
+  <a href="{{_id}}/locationEdit">Edit this location</a>
+  <a href="{{_id}}/locationDel">Delete this location</a>
+  <hr>
+{{/with}}

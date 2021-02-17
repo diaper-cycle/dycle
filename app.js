@@ -66,11 +66,4 @@ mongoose
     .then(x => console.log(`Connected to Mongo!`))
     .catch(err => console.log('Error connecting to mongo', err));
 
-//Test
 
-
-
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require("./error-handling")(app);
-
-module.exports = app;

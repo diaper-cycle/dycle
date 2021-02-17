@@ -1,0 +1,12 @@
+<h2>List of Users</h2>
+ <hr>
+
+
+          <a href="../new">Add User</a>
+         <a href="../delete">Delete User</a>
+
+
+    {{#each users}}
+    <a href="../admin/{{this._id}}"><p>User Name:  <b>{{this.username}}</b></p></a>
+    <hr>
+{{/each}}
