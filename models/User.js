@@ -7,42 +7,26 @@ const userSchema = new Schema({
     unique: true,
     required: true
   },
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  passwordHash: {
+
+  password: {
     type: String,
     required: true
   },
+
   firstname: String,
   lastname: String,
 
-    // email: {
-    //     type: String,
-    //     unique: true,
-    //     // required: true
-    // },
+  email: {
+    type: String,
+    unique: true,
+  },
 
-    address: {
-        street: {
-          type: String,
-          // required: true
-        },
-        houseNumber: {
-          type: Number,
-          // required: true
-        },
-        zip: {
-          type: Number,
-          // required: true
-        }
-    }
+  address: {
+      street: String,
+      houseNumber: Number,
+      zip: Number,
   }
-  /* {
-    //timestamps: true
-  }  */
+}  ,{ timestamps: true } 
 );
 
 const User = mongoose.model("User", userSchema);
