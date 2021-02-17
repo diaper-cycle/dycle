@@ -66,4 +66,4 @@ mongoose
     .then(x => console.log(`Connected to Mongo!`))
     .catch(err => console.log('Error connecting to mongo', err));
 
-
+module.exports = app;
