@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const warehouseSchema = new Schema({
@@ -23,6 +24,8 @@ const warehouseSchema = new Schema({
   }
 });
 
-const Warehouse = model("Warehouse", warehouseSchema);
+const Warehouse = mongoose.model("Warehouse", warehouseSchema);
 
 module.exports = Warehouse;
+
+

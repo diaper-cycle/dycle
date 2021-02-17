@@ -1,4 +1,6 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 
 const pickupLocationSchema = new Schema({
     locationName: String,
@@ -19,9 +21,13 @@ const pickupLocationSchema = new Schema({
     stock: {
       type: Number,
       required: true
-    }
+    },
+    image: String
 });
 
-const PickupLocation = model("PickupLocation", pickupLocationSchema);
+const PickupLocation = mongoose.model("PickupLocation", pickupLocationSchema);
 
 module.exports = PickupLocation;
+
+
+

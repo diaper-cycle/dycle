@@ -1,0 +1,9 @@
+<h2>List of Locations</h2>
+ <hr>
+  <a href="../new">Add User</a>
+ <hr>
+
+    {{#each pickuplocations}}
+    <a href="../locations/{{this._id}}"><p>Name:  <b>{{this.name}}</b></p></a>
+    <hr>
+{{/each}}
