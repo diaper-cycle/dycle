@@ -55,7 +55,29 @@ hbs.registerPartials(__dirname + "/views/partials");
 
 //Test
 app.get("/test", (req, res, next) => {
-    res.render("test");
+    const locos = [
+            {
+                locationName: "Kindergarten Milchzahnbande",
+                address: {
+                    street: "Prenzlauer Allee",
+                    houseNumber: 115,
+                    zip: 10409
+                },
+                stock: 40,
+                image: "https://www.inbruehl.com/images/stories/2009_09/k_milchzahnbande0909.jpg"
+            },
+            {
+                locationName: "Kita Sonnenblume",
+                address: {
+                    street: "Schwebelstraße",
+                    houseNumber: 22,
+                    zip: 12305
+                },
+                stock: 180,
+                image: "https://mar.prod.image.rndtech.de/var/storage/images/maz/lokales/teltow-flaeming/mehr-plaetze-fuer-kita-sonnenblume-geplant/626856551-2-ger-DE/Mehr-Plaetze-fuer-Kita-Sonnenblume-geplant_big_teaser_article.jpg"
+            }
+    ];
+    res.render("test", {locos});
 });
 
 app.get("/locations", (req, res, next) => {
@@ -66,10 +88,5 @@ app.get("/locations", (req, res, next) => {
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
-
-
-app.listen(3000, () => {
-    console.log("App listening at port: whatever");
-});
 
 module.exports = app;
