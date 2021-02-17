@@ -57,12 +57,12 @@ passport.deserializeUser((id, cb) => {
  
 passport.use(
   new LocalStrategy(
-    { passReqToCallback: true },
     {
       usernameField: 'username',
-      passwordField: 'password'
+      passwordField: 'password',
+      passReqToCallback: true
     },
-    (username, password, done) => {
+    (req, username, password, done) => {
       User.findOne({ username })
         .then(user => {
           if (!user) {
@@ -79,6 +79,9 @@ passport.use(
     }
   )
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
