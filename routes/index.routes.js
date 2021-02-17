@@ -17,10 +17,12 @@ const loginCheck = () => {
 }
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-  const user = req.session.user;
-  res.render("index", { user: user });
-});
+// router.get('/', (req, res, next) => {
+//   const user = req.session.user;
+//   res.render('index', { user: user });
+// });
+
+router.get('/', (req, res) => res.render('index', { title: 'Check your Dycle Pick-up location' }));
 
 router.get('/profile', loginCheck(), (req, res) => {
   res.render('profile');
