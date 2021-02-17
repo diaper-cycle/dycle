@@ -42,6 +42,9 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
 
+const test = require("./routes/test");
+app.use("/", test);
+
 //Make static files inside of 'public' accessable
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -53,36 +56,18 @@ app.set('view engine', 'hbs');
 //Register all partials to make them available
 hbs.registerPartials(__dirname + "/views/partials");
 
-//Test
-app.get("/test", (req, res, next) => {
-    const locos = [
-            {
-                locationName: "Kindergarten Milchzahnbande",
-                address: {
-                    street: "Prenzlauer Allee",
-                    houseNumber: 115,
-                    zip: 10409
-                },
-                stock: 40,
-                image: "https://www.inbruehl.com/images/stories/2009_09/k_milchzahnbande0909.jpg"
-            },
-            {
-                locationName: "Kita Sonnenblume",
-                address: {
-                    street: "Schwebelstraße",
-                    houseNumber: 22,
-                    zip: 12305
-                },
-                stock: 180,
-                image: "https://mar.prod.image.rndtech.de/var/storage/images/maz/lokales/teltow-flaeming/mehr-plaetze-fuer-kita-sonnenblume-geplant/626856551-2-ger-DE/Mehr-Plaetze-fuer-Kita-Sonnenblume-geplant_big_teaser_article.jpg"
-            }
-    ];
-    res.render("test", {locos});
-});
+// Connect to Database
+mongoose
+    .connect('mongodb://localhost/dycle', {
+        userNewUrlParser: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(x => console.log(`Connected to Mongo!`))
+    .catch(err => console.log('Error connecting to mongo', err));
 
-app.get("/locations", (req, res, next) => {
-    res.render("locations");
-});
+//Test
+
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
