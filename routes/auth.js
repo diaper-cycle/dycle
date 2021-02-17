@@ -24,12 +24,12 @@ router.post('/signup', (req, res, next) => {
     } else {
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(password, salt)
-        User.create({username: username, password: hash})
+        User.create({username: username, passwordHash: hash})
           .then(userFromDB => {
             console.log(userFromDB);
+            //can be redirect to /locations view
             res.redirect('/login');
-          });
-          
+          })     
     }
   })
   .catch(err => {
@@ -41,5 +41,31 @@ router.post('/signup', (req, res, next) => {
 router.get("/login", (req, res, next) => {
   res.render("login");
 });
+
+//the login form posts in this route
+router.post('/login', (req, res, next) => {
+  const { username, password } = req.body;
+ 
+  if (username === '' || password === '') {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, username and password to login.'
+    });
+    return;
+  }
+ 
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: 'username is not registered.' });
+        return;
+      } else if (bcrypt.compareSync(password, user.passwordHash)) {
+        res.redirect('/test');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error));
+});
+ 
 
 module.exports = router;
