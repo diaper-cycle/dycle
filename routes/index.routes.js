@@ -2,6 +2,7 @@
 //or:
 const express = require('express');
 const router = express.Router();
+const Pickuplocations = require("../models/PickupLocation");
 
 // middleware to check if the user is logged in
 const loginCheck = () => {
