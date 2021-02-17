@@ -1,0 +1,15 @@
+<h2>Users Details</h2>
+ <hr>
+
+{{#with users}}
+  <p>User Name:<b>{{this.username}}</b></p>
+  <p>User Email:<b>{{this.email}}</b></p>
+  <p>User Password:<b>{{this.password}}</b></p>
+  <p>User First Name:<b>{{this.firstname}}</b></p>
+  <p>User Last Name:<b>{{this.lastname}}</b></p>
+  <p>User Address:<b>{{this.address}}</b></p>
+
+  <a href="{{_id}}/userEdit">Edit this user</a>
+  <a href="{{_id}}/userDel">Delete this location</a>
+  <hr>
+{{/with}}

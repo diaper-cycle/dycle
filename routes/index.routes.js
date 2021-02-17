@@ -22,6 +22,18 @@ router.get("/", (req, res, next) => {
   res.render("index", { user: user });
 });
 
+
+router.get('/locations', (req, res) => {
+  // get locations the database -> find() returns all the documents
+  pickuplocations.find().then(locationsFromDB => {
+    console.log("this is the response",locationsFromDB);
+    // render a books view to display them
+    res.render('locations/locationLayoutLocations', { locationsList: locationsFromDB })
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
 router.get('/profile', loginCheck(), (req, res) => {
   res.render('profile');
 })
