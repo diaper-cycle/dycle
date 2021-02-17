@@ -12,13 +12,14 @@ mongoose.connect('mongodb://localhost/dycle', {
 // ADD PickupLocations
 const pickupLocations = [
     {
-        locationName: "Kite Kritzelknirpse",
+        locationName: "Kita Kritzelknirpse",
         address: {
             street: "Lychener Str.",
             houseNumber: 55,
             zip: 10437
         },
-        stock: 230
+        stock: 230,
+        image: "https://www.pfefferwerk.de/wp-content/uploads/2018/07/Kritzelknirpse-2.jpg"
     },
     {
         locationName: "Kindergarten Milchzahnbande",
@@ -27,7 +28,8 @@ const pickupLocations = [
             houseNumber: 115,
             zip: 10409
         },
-        stock: 40
+        stock: 40,
+        image: "https://www.inbruehl.com/images/stories/2009_09/k_milchzahnbande0909.jpg"
     },
     {
         locationName: "Kita Sonnenblume",
@@ -36,7 +38,8 @@ const pickupLocations = [
             houseNumber: 22,
             zip: 12305
         },
-        stock: 180
+        stock: 180,
+        image: "https://mar.prod.image.rndtech.de/var/storage/images/maz/lokales/teltow-flaeming/mehr-plaetze-fuer-kita-sonnenblume-geplant/626856551-2-ger-DE/Mehr-Plaetze-fuer-Kita-Sonnenblume-geplant_big_teaser_article.jpg"
     }
 ];
 

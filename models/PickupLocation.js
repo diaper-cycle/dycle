@@ -21,7 +21,8 @@ const pickupLocationSchema = new Schema({
     stock: {
       type: Number,
       required: true
-    }
+    },
+    image: String
 });
 
 const PickupLocation = mongoose.model("PickupLocation", pickupLocationSchema);
