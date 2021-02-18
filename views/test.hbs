@@ -42,14 +42,15 @@
 
 <!-- DELETE LOCATION -->
 <br><br>
-<h2>Delete Locations</h2>
+<h2>Edit Locations</h2>
 <div>
   <ul>
   {{#each pickUpfromDB}}
   <br>
     <ls>{{this.locationName}}</ls>
     <br>
-    <a href="/books/delete/{{_id}}">Delete</a>
+    <a href="/test/edit/{{_id}}">Edit</a>
+    <span> | </span> <a href="/test/delete/{{_id}}">Delete</a>
     <br>
   {{/each}}
   </ul>

@@ -1,0 +1,28 @@
+
+<!-- Test -->
+<br><br>
+<h1>Edit this location</h1>
+{{#with pickUpFromDB}}
+<form action="/test/edit/{{_id}}" method="POST">
+  <label for="title"><b>Location details: </b></label>
+  <br>
+  <label for="title">Name: </label>
+  <input type="text" name="title" id="title" value="{{locationName}}">
+  <label for="imageLink">Image Link: </label>
+  <input type="text" name="imageLink" id="imageLink" value="{{image}}">
+  <label for="stock">Stock: </label>
+  <input type="number" name="stock" id="stock" value="{{stock}}">
+<br><br>
+<label for="address"><b>Address:</b></label>
+<br>
+<label for="street">Street: </label>
+  <input type="text" name="street" id="street" value="{{address.street}}">
+  <label for="nr">House number: </label>
+  <input type="number" name="nr" id="nr" value="{{address.houseNumber}}">
+<label for="zip">ZIP: </label>
+  <input type="number" name="zip" id="zip" value="{{address.zip}}">
+<br><br>
+  
+<button type="submit">Update location</button>
+</form>
+{{/with}}
