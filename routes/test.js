@@ -49,8 +49,8 @@ router.post('/test', (req, res) => {
 })
 
 
-//EDIT LOCATIONS
-router.get('/books/delete/:id', (req, res) => {
+//DELETE LOCATIONS
+router.get('/test/delete/:id', (req, res) => {
   const locID = req.params.id;
   Pickuplocations.findByIdAndDelete(locID)
     .then(() => {
@@ -61,5 +61,45 @@ router.get('/books/delete/:id', (req, res) => {
       console.log(err);
     })
 })
+
+//DIRECT TO SPECIFIC EDIT-LOCATIONS-PAGE
+router.get('/test/edit/:id', (req, res) => {
+  const locID = req.params.id;
+  Pickuplocations.findById(locID)
+    .then(pickUpFromDB => {
+      console.log(pickUpFromDB);
+      res.render('testEdit.hbs', {pickUpFromDB});
+    })
+})
+
+//EDIT SPECIFIC LOCATION IN DB
+router.post('/test/edit/:id', (req, res) => {
+  console.log(req.body);
+  const locID = req.params.id;
+  const locationName = req.body.title;
+  const street = req.body.street;
+  const nr = req.body.nr;
+  const zip = req.body.zip;
+  const imageLink = req.body.imageLink;
+  const stock = req.body.stock;
+  // const { title, author, decription, rating } = req.body; 
+  Pickuplocations.findByIdAndUpdate(locID, {
+    locationName: locationName,
+    address: {
+      street: street,
+      houseNumber: nr,
+      zip: zip
+    },
+    image: imageLink,
+    stock: stock,
+  })
+    .then(book => {
+      res.redirect(`../`);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
 
 module.exports = router;
