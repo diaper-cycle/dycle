@@ -2,7 +2,11 @@
 //or:
 const express = require('express');
 const router = express.Router();
+
 const Pickuplocations = require ("../models/PickupLocation");
+
+const Pickuplocations = require("../models/PickupLocation");
+
 
 // middleware to check if the user is logged in
 const loginCheck = () => {
@@ -18,10 +22,12 @@ const loginCheck = () => {
 }
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-  const user = req.session.user;
-  res.render("index", { user: user });
-});
+// router.get('/', (req, res, next) => {
+//   const user = req.session.user;
+//   res.render('index', { user: user });
+// });
+
+router.get('/', (req, res) => res.render('index', { title: 'Check your Dycle Pick-up location' }));
 
 
 router.get('/locations', (req, res) => {
