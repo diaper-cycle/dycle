@@ -6,21 +6,13 @@ require("dotenv/config");
 require("./db");
 
 // Handles http requests (express is node js framework)
-const cookieParser = require('cookie-parser');
-const express = require('express');
-const favicon = require('serve-favicon');
-
-const mongoose = require('mongoose');
-const logger = require('morgan');
-const path = require('path');
-
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-
+// https://www.npmjs.com/package/express
+const express = require("express");
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+hbs.registerPartials(__dirname + "/views/partials");
 
 const app = express();
 
@@ -28,16 +20,73 @@ const app = express();
 require("./config")(app);
 
 // default value for title local
-const projectName = "dycle";
+const projectName = "test";
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 app.locals.title = `${capitalized(projectName)}- Generated with IronGenerator`;
 
+// passport configuration
+const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000,
+    }),
+  })
+);
+
+const passport = require('passport');
+const LocalStrategy = require("passport-local").Strategy;
+const User = require('./models/User.js');
+const bcrypt = require("bcrypt");
+
+passport.serializeUser((user, cb) => cb(null, user._id));
+ 
+passport.deserializeUser((id, cb) => {
+  User.findById(id)
+    .then(user => cb(null, user))
+    .catch(err => cb(err));
+});
+ 
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: 'username',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    (req, username, password, done) => {
+      User.findOne({ username })
+        .then(user => {
+          if (!user) {
+            return done(null, false, { message: 'Incorrect username' });
+          }
+ 
+          if (!bcrypt.compareSync(password, user.password)) {
+            return done(null, false, { message: 'Incorrect password' });
+          }
+ 
+          done(null, user);
+        })
+        .catch(err => done(err));
+    }
+  )
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // 👇 Start handling routes here
-//
 const index = require("./routes/index.routes");
 app.use("/", index);
-//
 
 const auth = require("./routes/auth");
 app.use("/", auth);
@@ -45,25 +94,7 @@ app.use("/", auth);
 const test = require("./routes/test");
 app.use("/", test);
 
-//Make static files inside of 'public' accessable
-app.use(express.static(path.join(__dirname, 'public')));
+// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
+require("./error-handling")(app);
 
-//Make everything inside of 'views' accessable
-//And allow handlebars to take charge of the views
-app.set('views', path.join(__dirname, "views"));
-app.set('view engine', 'hbs');
-
-//Register all partials to make them available
-hbs.registerPartials(__dirname + "/views/partials");
-
-// Connect to Database
-mongoose
-    .connect('mongodb://localhost/dycle', {
-        userNewUrlParser: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(x => console.log(`Connected to Mongo!`))
-    .catch(err => console.log('Error connecting to mongo', err));
 module.exports = app;
-
