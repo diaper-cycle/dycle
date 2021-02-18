@@ -7,26 +7,18 @@ const userSchema = new Schema({
     unique: true,
     required: true
   },
-
   password: {
     type: String,
     required: true
   },
-
   firstname: String,
   lastname: String,
-
-  email: {
-    type: String,
-    unique: true,
-  },
-
   address: {
-      street: String,
-      houseNumber: Number,
-      zip: Number,
+    street: String,
+    houseNumber: Number,
+    zip: Number,
   }
-}  ,{ timestamps: true } 
+}, { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);

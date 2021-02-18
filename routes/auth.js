@@ -14,29 +14,29 @@ router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   console.log('1', username, password);
   if (password.length < 8) {
-    res.render('signup', {message: 'Your password must be 8 characters minimum.'});
+    res.render('signup', { message: 'Your password must be 8 characters minimum.' });
   }
-  if(username ==='') {
-    res.render('signup', {message: 'Your username cannot be empty.'});
+  if (username === '') {
+    res.render('signup', { message: 'Your username cannot be empty.' });
   }
   User.findOne({ username: username })
     .then(userFromDB => {
       if (userFromDB != null) {
-        res.render('signup', {message: 'Username is already taken.'});
-    } else {
+        res.render('signup', { message: 'Username is already taken.' });
+      } else {
         console.log('RIGHT ROUTE')
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(password, salt)
-        User.create({username: username, password: hash})
+        User.create({ username: username, password: hash })
           .then(userFromDB => {
             console.log('2', userFromDB);
             res.redirect('/test');
-          })     
-    }
-  })
-  .catch(err => {
-    console.logg(err);
-  })
+          })
+      }
+    })
+    .catch(err => {
+      console.logg(err);
+    })
 });
 
 //the login form posts in this route
