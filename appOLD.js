@@ -57,8 +57,8 @@ require("./error-handling")(app);
 const auth = require("./routes/auth");
 app.use("/", auth);
 
-const test = require("./routes/test");
-app.use("/", test);
+const location = require("./routes/location");
+app.use("/", location);
 
 //Make static files inside of 'public' accessable
 app.use(express.static(path.join(__dirname, 'public')));

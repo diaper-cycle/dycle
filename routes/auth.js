@@ -30,13 +30,15 @@ router.post('/signup', (req, res, next) => {
         User.create({ username: username, password: hash })
           .then(userFromDB => {
             console.log('2', userFromDB);
-            res.redirect('/test');
-          })
-      }
-    })
-    .catch(err => {
-      console.logg(err);
-    })
+
+            res.redirect('/location');
+          })     
+    }
+  })
+  .catch(err => {
+    console.logg(err);
+  })
+
 });
 
 //the login form posts in this route

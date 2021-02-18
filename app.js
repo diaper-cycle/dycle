@@ -91,8 +91,8 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
 
-const test = require("./routes/test");
-app.use("/", test);
+const location = require("./routes/location");
+app.use("/", location);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

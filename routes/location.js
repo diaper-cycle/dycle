@@ -1,16 +1,21 @@
 const router = require('express').Router();
 const Pickuplocations = require("../models/PickupLocation")
 
-/* router.get('/', (req, res, next) => {
-  res.render('test');
-}) */
-
 // RENDER HBS AND DATA
-router.get("/test", (req, res, next) => {
+router.get("/location", (req, res, next) => {
   console.log("working");
-  Pickuplocations.find().then((pickUpfromDB) => {
-    console.log(pickUpfromDB)
-    res.render("test.hbs", {pickUpfromDB})
+  Pickuplocations.find().then((pickUpFromDB) => {
+    console.log(pickUpFromDB)
+    res.render("location.hbs", {pickUpFromDB})
+  })
+});
+
+// RENDER HBS LocationNew
+router.get("/locationNew", (req, res, next) => {
+  console.log("working");
+  Pickuplocations.find().then((pickUpFromDB) => {
+    console.log()
+    res.render("locationNew.hbs", {pickUpFromDB})
   })
 });
 
@@ -20,7 +25,7 @@ router.get("/test", (req, res, next) => {
 
 
 // ADD NEW LOCATION
-router.post('/test', (req, res) => {
+router.post('/location', (req, res) => {
   console.log(req.body);
   const locationName = req.body.title;
   const street = req.body.street;
@@ -41,21 +46,21 @@ router.post('/test', (req, res) => {
     image: imageLink,
     stock: stock,
   })
-    .then(pickUpfromDB => {
-      console.log('this location was just created: ', pickUpfromDB);
-      res.render('test.hbs', {pickUpfromDB});
-      /* res.redirect('test.hbs'); */
+    .then(pickUpFromDB => {
+      console.log('this location was just created: ', pickUpFromDB);
+      res.redirect('/location')
+
     })
 })
 
 
 //DELETE LOCATIONS
-router.get('/test/delete/:id', (req, res) => {
+router.get('/location/delete/:id', (req, res) => {
   const locID = req.params.id;
   Pickuplocations.findByIdAndDelete(locID)
     .then(() => {
       // redirect to the Location list
-      res.redirect('/test')
+      res.redirect('/location')
     })
     .catch(err => {
       console.log(err);
@@ -63,17 +68,17 @@ router.get('/test/delete/:id', (req, res) => {
 })
 
 //DIRECT TO SPECIFIC EDIT-LOCATIONS-PAGE
-router.get('/test/edit/:id', (req, res) => {
+router.get('/location/edit/:id', (req, res) => {
   const locID = req.params.id;
   Pickuplocations.findById(locID)
     .then(pickUpFromDB => {
       console.log(pickUpFromDB);
-      res.render('testEdit.hbs', {pickUpFromDB});
+      res.render('locationEdit.hbs', {pickUpFromDB});
     })
 })
 
 //EDIT SPECIFIC LOCATION IN DB
-router.post('/test/edit/:id', (req, res) => {
+router.post('/location/edit/:id', (req, res) => {
   console.log(req.body);
   const locID = req.params.id;
   const locationName = req.body.title;
@@ -94,7 +99,7 @@ router.post('/test/edit/:id', (req, res) => {
     stock: stock,
   })
     .then(book => {
-      res.redirect(`../`);
+      res.redirect(`/test`);
     })
     .catch(err => {
       console.log(err);

@@ -1,10 +1,17 @@
 
-<!-- Test -->
-<br><br>
-<h1>Edit this location</h1>
+<!-- Location Edit -->
+
+<h2>Edit Location</h2>
 {{#with pickUpFromDB}}
-<form action="/test/edit/{{_id}}" method="POST">
-  <label for="title"><b>Location details: </b></label>
+<h2>{{locationName}}</h2><br>
+<img
+      class="card-img-top"
+      src="{{this.image}}"
+      alt="{{this.locationName}}"
+      style="width:400px"
+    />
+<form action="/location/edit/{{_id}}" method="POST">
+  <label for="title"><b><br>Location details: </b></label>
   <br>
   <label for="title">Name: </label>
   <input type="text" name="title" id="title" value="{{locationName}}">
@@ -24,5 +31,6 @@
 <br><br>
   
 <button type="submit">Update location</button>
+<span>|</span> <a href="/location/delete/{{this._id}}">Delete</a>
 </form>
 {{/with}}
