@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
-   <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
-    
     <meta charset="utf-8" />
     <title>Dycle</title>
     <link rel="stylesheet" href="/stylesheets/styles.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    
-
-
-
-
      <nav class="navbar navbar-expand-lg class="navbar navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="#">DYCLE</a>
       <button
@@ -41,42 +32,8 @@
       </div>
     </nav>
 
-
-
-
      <main>
         {{{ body }}} 
-
-
-<div  a id='map' style='width: 400px; height: 300px;'></div>
-
-<style>
-	body { margin: 20px; padding: 20px; }
-	#map {   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px }
-</style>
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoicHJpbmNpOG0iLCJhIjoiY2tsOW0wYTBkMG5hZTJubGJraDM1ZnY4MCJ9.3tM92mFdhWwWArDUjW2ItQ';
-var map = new mapboxgl.Map({
-container: 'map', // container id
-style: 'mapbox://styles/mapbox/streets-v11',
-center: [13.423171728872, 52.54126899999298], // starting position
-zoom: 13 // starting zoom
-});
- 
-// Add geolocate control to the map.
-map.addControl(
-new mapboxgl.GeolocateControl({
-positionOptions: {
-enableHighAccuracy: true
-},
-trackUserLocation: true
-})
-);
-</script>
-
 
      </main>
     

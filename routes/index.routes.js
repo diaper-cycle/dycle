@@ -2,11 +2,7 @@
 //or:
 const express = require('express');
 const router = express.Router();
-
-const Pickuplocations = require ("../models/PickupLocation");
-
 const Pickuplocations = require("../models/PickupLocation");
-
 
 // middleware to check if the user is logged in
 const loginCheck = () => {
@@ -32,7 +28,7 @@ router.get('/', (req, res) => res.render('index', { title: 'Check your Dycle Pic
 
 router.get('/locations', (req, res) => {
   // get locations the database -> find() returns all the documents
-  Pickuplocations.find().then(locationsFromDB => {
+  pickuplocations.find().then(locationsFromDB => {
     console.log("this is the response",locationsFromDB);
     // render a books view to display them
     res.render('locations/locationLayoutLocations', { locationsList: locationsFromDB })
