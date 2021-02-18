@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const Pickuplocations = require("../models/PickupLocation")
 
-router.get('/', (req, res, next) => {
+/* router.get('/', (req, res, next) => {
   res.render('test');
-})
+}) */
 
 router.get("/test", (req, res, next) => {
+  console.log("working");
   Pickuplocations.find().then((pickUpfromDB) => {
     console.log(pickUpfromDB)
     res.render("test.hbs", {pickUpfromDB})
