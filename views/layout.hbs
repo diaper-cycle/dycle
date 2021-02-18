@@ -48,13 +48,33 @@
         {{{ body }}} 
 
 
-<div  align="center"; id='map' style='width: 400px; height: 300px;'></div>
+<div  a id='map' style='width: 400px; height: 300px;'></div>
+
+<style>
+	body { margin: 20px; padding: 20px; }
+	#map {   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px }
+</style>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoicHJpbmNpOG0iLCJhIjoiY2tsOW0wYTBkMG5hZTJubGJraDM1ZnY4MCJ9.3tM92mFdhWwWArDUjW2ItQ';
+	mapboxgl.accessToken = 'pk.eyJ1IjoicHJpbmNpOG0iLCJhIjoiY2tsOW0wYTBkMG5hZTJubGJraDM1ZnY4MCJ9.3tM92mFdhWwWArDUjW2ItQ';
 var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v11'
+container: 'map', // container id
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [13.423171728872, 52.54126899999298], // starting position
+zoom: 13 // starting zoom
 });
+ 
+// Add geolocate control to the map.
+map.addControl(
+new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+trackUserLocation: true
+})
+);
 </script>
 
 
