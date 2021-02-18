@@ -8,7 +8,9 @@
     />
     <div class="card-body">
       <h5 class="card-title">{{this.locationName}}</h5>
-      <p class="card-text">City</p>
+      <p class="card-text">{{this.address.street}} {{this.address.houseNumber}} <br> {{this.address.zip}} Berlin</p>
+      <pre><br><b>diapers available: </b>{{this.stock}}</pre>
+      <a href="/location/edit/{{this._id}}">Edit</a>    
     </div>
   </div>
 </div>

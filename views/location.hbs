@@ -1,0 +1,16 @@
+<br>
+<br>
+<h2>Pickup Locations</h2>
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    {{#each pickUpFromDB}}
+    {{> playerCard this}}
+    {{/each}}
+  </div>
+</div>
+
+<br>
+<a href="/locationNew"><button>Add New Location</button></a>

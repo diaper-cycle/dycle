@@ -30,7 +30,7 @@ router.post('/signup', (req, res, next) => {
         User.create({username: username, password: hash})
           .then(userFromDB => {
             console.log('2', userFromDB);
-            res.redirect('/test');
+            res.redirect('/location');
           })     
     }
   })
