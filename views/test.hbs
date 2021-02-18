@@ -1,6 +1,6 @@
 <br>
 <br>
-<h2>Pickup Locations (Test)</h2>
+<h2>Pickup Locations</h2>
 <br>
 <br>
 
@@ -10,4 +10,47 @@
     {{> playerCard this}}
     {{/each}}
   </div>
+</div>
+
+
+<!-- ADD LOCATION -->
+<br><br>
+<h2>Add new Location</h2>
+<form action="/test" method="POST">
+  <label for="title"><b>Location details: </b></label>
+  <br>
+  <label for="title">Name: </label>
+  <input type="text" name="title" id="title">
+  <label for="imageLink">Image Link: </label>
+  <input type="text" name="imageLink" id="imageLink">
+  <label for="stock">Stock: </label>
+  <input type="number" name="stock" id="stock">
+<br><br>
+<label for="address"><b>Address:</b></label>
+<br>
+<label for="street">Street: </label>
+  <input type="text" name="street" id="street">
+  <label for="nr">House number: </label>
+  <input type="number" name="nr" id="nr">
+<label for="zip">ZIP: </label>
+  <input type="number" name="zip" id="zip">
+<br><br>
+  
+  <button type="submit">Add location</button>
+</form>
+
+
+<!-- DELETE LOCATION -->
+<br><br>
+<h2>Delete Locations</h2>
+<div>
+  <ul>
+  {{#each pickUpfromDB}}
+  <br>
+    <ls>{{this.locationName}}</ls>
+    <br>
+    <a href="/books/delete/{{_id}}">Delete</a>
+    <br>
+  {{/each}}
+  </ul>
 </div>
